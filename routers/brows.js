@@ -16,22 +16,9 @@ for (let i = 0; i < product.length; i++){
         product.splice(i, 1)
     } 
 }
-for (let j =0; j < product.length; j++) {
-    let user = await User.findOne({_id: product[j].userId})
-    arr.push({
-        sellerDetails: {
-            name: user.name,
-            email: user.email
-        },
-        productDetails: {
-            _id: product[j]._id,
-            name: product[j].nameOfProduct,
-            quantity: product[j].quantity
-        }
-    })
-}
 
-    res.send(arr)
+
+    res.send(product)
 })
 
 
