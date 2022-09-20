@@ -24,7 +24,8 @@ router.post('/',auth, async(req, res)=> {
 })
 
 router.put('/', auth, async(req, res)=> {
-   const product = await Product.findById(req.query)
+   if(!req.query) {return res.send('Id needed (put id in the query)')}
+   const product = await Product.findById(req.query._id)
    if(!product) return res.status(404).send('No such product found')
    if(product.userId === req.user._id) {
       const result = await Product.findByIdAndUpdate(req.query._id, {
