@@ -11,7 +11,7 @@ const router = express.Router();
 router.post('/',auth, async(req, res)=> {
     const { error } = validateP(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
-  if (req.body.quantity === 0) { res.send("Product won't be displayed for users because of 0 quantity ") }
+  if (req.body.quantity === 0) { return res.send("Product won't be displayed for users because of 0 quantity update the quantity ") }
  const product = new Product({
     nameOfProduct: req.body.nameOfProduct,
     quantity: req.body.quantity,
