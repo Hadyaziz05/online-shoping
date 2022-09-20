@@ -21,5 +21,10 @@ for (let i = 0; i < product.length; i++){
     res.send(product)
 })
 
+router.get('/myProducts', auth, async(req, res)=> {
+    const product = await Product.findById(req.user._id)
+    res.send(product)
+})
+
 
 module.exports = router

@@ -11,7 +11,7 @@ const router = express.Router();
 router.post('/',auth, async(req, res)=> {
     const { error } = validateP(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
-  if (req.body.quantity === 0) { res.send("Product won't be displayed for users because of 0 quantity") }
+  if (req.body.quantity === 0) { res.send("Product won't be displayed for users because of 0 quantity ") }
  const product = new Product({
     nameOfProduct: req.body.nameOfProduct,
     quantity: req.body.quantity,
@@ -24,7 +24,7 @@ router.post('/',auth, async(req, res)=> {
 })
 
 router.put('/', auth, async(req, res)=> {
-   if(!req.query) {return res.send('Id needed (put id in the query)')}
+   if(!req.query._id) {return res.send('Id needed (put id in the query)')}
    const product = await Product.findById(req.query._id)
    if(!product) return res.status(404).send('No such product found')
    if(product.userId === req.user._id) {
@@ -33,6 +33,7 @@ router.put('/', auth, async(req, res)=> {
          quantity: req.body.quantity
       })
       await product.save()
+      res.send(result)
    } else if (product.userId !== req.user._id){res.send( 'you can only update your product')}
 })
 
