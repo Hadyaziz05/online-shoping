@@ -22,7 +22,10 @@ for (let i = 0; i < product.length; i++){
 })
 
 router.get('/myProducts', auth, async(req, res)=> {
-    const product = await Product.findOne({userId: req.user._id})
+    const product = await Product.find()
+    for (let i = 0 ; i < product.length; i++){
+        if(product[i].userId !== req.user._id){ product.splice(i, 1)}
+    }
     res.send(product)
 })
 

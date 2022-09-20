@@ -33,7 +33,7 @@ router.put('/', auth, async(req, res)=> {
          quantity: req.body.quantity
       })
       await product.save()
-      res.send(result)
+      res.send('Updated succefully')
    } else if (product.userId !== req.user._id){res.send( 'you can only update your product')}
 })
 
