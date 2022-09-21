@@ -11,16 +11,16 @@ const router = express.Router();
 router.post('/',auth, async(req, res)=> {
     const { error } = validateP(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
-  /*if (req.body.quantity === 0) { 
-   const product = new Product({
+  if (req.body.quantity === 0) { 
+   /*const product = new Product({
       nameOfProduct: req.body.nameOfProduct,
       quantity: req.body.quantity,
       price: req.body.price,
       userId: req.user
    })
-   await product.save()
-   res.send('Product will not be displayed to users because of zero quantity') 
-}*/
+   await product.save()*/
+   return res.send('Can not post with zero quantity') 
+}
   else if (req.body.quantity > 0) {
    const product = new Product({
     nameOfProduct: req.body.nameOfProduct,
