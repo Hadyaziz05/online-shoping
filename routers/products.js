@@ -19,7 +19,7 @@ router.post('/',auth, async(req, res)=> {
       userId: req.user
    })
    await product.save()
-   res.send("Product won't be displayed for users because of 0 quantity update the quantity ") 
+   res.send('Product will not be displayed to users because of zero quantity') 
 }
   else if (req.body.quantity > 0) {
    const product = new Product({
