@@ -34,7 +34,7 @@ function validateProduct(product) {
         
         
                 nameOfProduct: Joi.string().min(3).max(50).required(),
-                quantity: Joi.number().required(),
+                quantity: Joi.number(),
                 price: Joi.number().required()
             
        
