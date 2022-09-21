@@ -15,19 +15,22 @@ router.post('/',auth, async(req, res)=> {
    const product = new Product({
       nameOfProduct: req.body.nameOfProduct,
       quantity: req.body.quantity,
+      price: req.body.price,
       userId: req.user
    })
    await product.save()
    res.send("Product won't be displayed for users because of 0 quantity update the quantity ") 
 }
- const product = new Product({
+  else if (req.body.quantity > 0) {
+   const product = new Product({
     nameOfProduct: req.body.nameOfProduct,
     quantity: req.body.quantity,
+    price: req.body.price,
     userId: req.user
  })
  await product.save()
  res.send(product)
-  
+}
     
 })
 
@@ -38,6 +41,7 @@ router.put('/', auth, async(req, res)=> {
    if(product.userId === req.user._id) {
       const result = await Product.findByIdAndUpdate(req.query._id, {
          nameOfProduct: req.body.nameOfProduct,
+         price: req.body.price,
          quantity: req.body.quantity
       })
       await product.save()

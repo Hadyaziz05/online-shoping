@@ -13,6 +13,11 @@ const productSchema = new mongoose.Schema({
         type: Number,
         
     },
+    price : {
+        type:Number,
+
+    },
+
     userId: {
         type: String,
         
@@ -30,7 +35,7 @@ function validateProduct(product) {
         
                 nameOfProduct: Joi.string().min(3).max(50).required(),
                 quantity: Joi.number().required(),
-                
+                price: Joi.number().required()
             
        
     };
