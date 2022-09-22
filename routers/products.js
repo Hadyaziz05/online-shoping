@@ -11,7 +11,7 @@ const router = express.Router();
 router.post('/',auth, async(req, res)=> {
     const { error } = validateP(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
-  if (req.body.quantity === 0) { return res.send('Can not post product with zero quantity') }
+  if (req.body.quantity < 1) { return res.send('Can not post product with less than one quantity') }
   else if (req.body.quantity > 0) {
    const product = new Product({
     nameOfProduct: req.body.nameOfProduct,
