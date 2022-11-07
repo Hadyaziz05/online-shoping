@@ -8,7 +8,7 @@ const express = require('express');
 const app = express();
 
 
-mongoose.connect('mongodb+srv://olxUser:1234@mycluster.b1xvmmt.mongodb.net/test')
+mongoose.connect('mongodb+srv://olxUser:1357@mycluster.b1xvmmt.mongodb.net/test')
   .then(() => console.log('Connected to MongoDB...'))
 
 app.use(express.json());
